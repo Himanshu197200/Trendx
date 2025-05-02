@@ -1,0 +1,448 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-content {
+  flex-grow: 1;
+  padding: 24px;
+}
+
+/* Global styling */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+  letter-spacing: -0.5px;
+}
+
+/* Custom text highlight */
+::selection {
+  background-color: rgba(25, 118, 210, 0.2);
+}
+
+/* Global animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  from {
+    border-right-color: rgba(25, 118, 210, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.slide-left {
+  animation: slideInLeft 0.7s ease-out;
+}
+
+.slide-right {
+  animation: slideInRight 0.7s ease-out;
+}
+
+.zoom-in {
+  animation: zoomIn 0.5s ease-out;
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  border-right: 3px solid rgba(25, 118, 210, 0.75);
+  animation: 
+    typewriter 3.5s steps(40, end),
+    blinkCursor 0.75s step-end infinite;
+}
+
+/* Component-specific animations */
+.stock-card {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.4s ease, 
+              background-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.stock-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stock-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.stock-card:hover::before {
+  transform: translateX(100%);
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Search field animation */
+.search-field {
+  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              background-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.search-field:focus-within {
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* View toggle animation */
+.view-toggle {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.view-toggle button {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.view-toggle button:hover {
+  transform: translateY(-2px);
+}
+
+/* Make transitions smooth for theme switching */
+* {
+  transition: background-color 0.3s ease,
+              color 0.2s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Price Change Animations */
+.price-up {
+  color: var(--success-main);
+  animation: pulseGreen 1.5s ease;
+}
+
+.price-down {
+  color: var(--error-main);
+  animation: pulseRed 1.5s ease;
+}
+
+@keyframes pulseGreen {
+  0% {
+    background-color: rgba(76, 175, 80, 0.1);
+  }
+  50% {
+    background-color: rgba(76, 175, 80, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes pulseRed {
+  0% {
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+  50% {
+    background-color: rgba(244, 67, 54, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* Page Transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Chart Animation */
+.chart-container {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-container:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px);
+}
+
+/* Banner styles */
+.home-banner {
+  overflow: hidden;
+  margin-bottom: 2rem;
+  position: relative;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.banner-content {
+  height: 380px;
+  padding: 3rem;
+  position: relative;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner-title {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem !important;
+  letter-spacing: -0.5px !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.banner-subtitle {
+  font-size: 1.2rem !important;
+  margin-bottom: 1.5rem !important;
+  opacity: 0.9;
+  max-width: 80%;
+}
+
+.banner-button {
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s, box-shadow 0.3s !important;
+}
+
+.banner-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Card grid styles */
+.card-grid-container {
+  margin-top: 1rem;
+}
+
+.card-grid-container .MuiPaper-root {
+  overflow: hidden;
+  border-radius: 16px !important;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.card-grid-container .MuiPaper-root:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced styles for the NavBar */
+.app-navbar {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Section headings */
+.section-title {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 4px;
+  background-color: #1976d2;
+  bottom: -8px;
+  left: 0;
+  border-radius: 2px;
+}
+
+/* Additional Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .banner-content {
+    padding: 2rem;
+    height: 420px;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .banner-title {
+    font-size: 2rem !important;
+  }
+  
+  .banner-subtitle {
+    font-size: 1rem !important;
+    max-width: 100%;
+  }
+}

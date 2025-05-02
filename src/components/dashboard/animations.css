@@ -1,0 +1,184 @@
+/* Enhanced Animations for Dashboard Components */
+
+/* Text reveal animation */
+@keyframes textReveal {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+.text-reveal {
+  animation: textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Staggered text reveal for multiple elements */
+.text-reveal-1 { animation-delay: 0.1s; }
+.text-reveal-2 { animation-delay: 0.3s; }
+.text-reveal-3 { animation-delay: 0.5s; }
+
+/* Enhanced floating animation */
+@keyframes enhancedFloat {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-10px) translateX(-5px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-15px) translateX(0) rotate(0);
+  }
+  75% {
+    transform: translateY(-10px) translateX(5px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+}
+
+.enhanced-float {
+  animation: enhancedFloat 6s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow effect */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(25, 118, 210, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(25, 118, 210, 0.3);
+  }
+}
+
+.glow-effect {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Button hover animations */
+.button-hover-effect {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.button-hover-effect:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(0,0,0,0.2);
+}
+
+.button-hover-effect:hover::before {
+  left: 100%;
+}
+
+/* Background pulse */
+@keyframes backgroundPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.background-pulse {
+  background-size: 200% 200%;
+  animation: backgroundPulse 10s ease infinite;
+}
+
+/* Typewriter effect with blinking cursor */
+@keyframes enhancedTypewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes enhancedBlinkCursor {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+
+.enhanced-typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid white;
+  margin: 0;
+  animation: 
+    enhancedTypewriter 3.5s steps(40, end),
+    enhancedBlinkCursor 0.75s step-end infinite;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce-animation {
+  animation: bounce 2s ease infinite;
+}
+
+/* Scale animation */
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scale-animation {
+  animation: scale 2s ease-in-out infinite;
+} 
