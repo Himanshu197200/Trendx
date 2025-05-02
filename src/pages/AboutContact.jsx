@@ -275,7 +275,7 @@ function AboutContact() {
               
               <Grid item xs={12}>
                 <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                  <Link href="https://twitter.com/trendx" target="_blank" rel="noopener">
+                  <Link href="https://twitter.com/Himanshu197200" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
@@ -287,7 +287,7 @@ function AboutContact() {
                     </Avatar>
                   </Link>
                   
-                  <Link href="https://linkedin.com/company/trendx" target="_blank" rel="noopener">
+                  <Link href="https://linkedin.com/in/himanshu-mishra-a5a8aa22a" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
@@ -299,7 +299,7 @@ function AboutContact() {
                     </Avatar>
                   </Link>
                   
-                  <Link href="https://facebook.com/trendx" target="_blank" rel="noopener">
+                  <Link href="https://facebook.com/profile.php?id=100009246070694" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
@@ -311,7 +311,7 @@ function AboutContact() {
                     </Avatar>
                   </Link>
                   
-                  <Link href="https://github.com/trendx" target="_blank" rel="noopener">
+                  <Link href="https://github.com/Himanshu197200" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
