@@ -20,6 +20,8 @@ import NightsStayIcon from '@mui/icons-material/NightsStay';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useThemeMode } from '../../context/ThemeContext';
+import CloseIcon from '@mui/icons-material/Close';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 // Custom styled toggle switch
 const ThemeSwitch = styled(Switch)(({ theme }) => ({

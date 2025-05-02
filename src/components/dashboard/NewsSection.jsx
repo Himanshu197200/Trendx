@@ -20,6 +20,7 @@ import {
   TrendingDown as TrendingDownIcon,
   NewReleases as NewReleasesIcon
 } from '@mui/icons-material';
+import NewsDetailModal from '../news/NewsDetailModal';
 
 // API key (free tier from Marketaux)
 const API_KEY = 'demo'; // Replace with your actual API key after signing up
@@ -28,6 +29,8 @@ function NewsSection() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     fetchNews();
@@ -93,6 +96,16 @@ function NewsSection() {
     }).format(date);
   };
 
+  const handleNewsClick = (item) => {
+    setSelectedNews(item);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedNews(null);
+  };
+
   if (loading) {
     return (
       <Paper elevation={1} sx={{ p: 3, borderRadius: 2, height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -102,80 +115,89 @@ function NewsSection() {
   }
 
   return (
-    <Paper elevation={1} sx={{ p: 3, borderRadius: 2 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-        <Typography variant="h5" sx={{ fontWeight: 600, display: 'flex', alignItems: 'center' }}>
-          <ArticleIcon sx={{ mr: 1 }} /> Market News
-        </Typography>
-        <Chip 
-          label="LIVE" 
-          color="error" 
-          size="small" 
-          icon={<NewReleasesIcon />} 
-          sx={{ fontWeight: 'bold' }} 
-        />
-      </Box>
-      
-      {error && (
-        <Alert severity="info" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      )}
-      
-      <Divider sx={{ mb: 2 }} />
-      
-      <Grid container spacing={2}>
-        {news.map((item, index) => {
-          const sentimentColor = getSentimentColor(item.sentiment);
-          const hasSentiment = item.sentiment && item.sentiment.polarity;
-          const isPositive = hasSentiment && item.sentiment.polarity > 0;
-          const TrendIcon = isPositive ? TrendingUpIcon : TrendingDownIcon;
-          
-          return (
-            <Grid item xs={12} key={item.uuid || index}>
-              <Card variant="outlined" sx={{ mb: 1 }}>
-                <CardActionArea component={Link} href={item.url} target="_blank" rel="noopener">
-                  <CardContent>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                      <Typography variant="caption" color="text.secondary">
-                        {item.source || 'Financial News'} • {formatDate(item.published_at || new Date())}
+    <>
+      <Paper elevation={1} sx={{ p: 3, borderRadius: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+          <Typography variant="h5" sx={{ fontWeight: 600, display: 'flex', alignItems: 'center' }}>
+            <ArticleIcon sx={{ mr: 1 }} /> Market News
+          </Typography>
+          <Chip 
+            label="LIVE" 
+            color="error" 
+            size="small" 
+            icon={<NewReleasesIcon />} 
+            sx={{ fontWeight: 'bold' }} 
+          />
+        </Box>
+        
+        {error && (
+          <Alert severity="info" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+        
+        <Divider sx={{ mb: 2 }} />
+        
+        <Grid container spacing={2}>
+          {news.map((item, index) => {
+            const sentimentColor = getSentimentColor(item.sentiment);
+            const hasSentiment = item.sentiment && item.sentiment.polarity;
+            const isPositive = hasSentiment && item.sentiment.polarity > 0;
+            const TrendIcon = isPositive ? TrendingUpIcon : TrendingDownIcon;
+            
+            return (
+              <Grid item xs={12} key={item.uuid || index}>
+                <Card variant="outlined" sx={{ mb: 1 }}>
+                  <CardActionArea onClick={() => handleNewsClick(item)}>
+                    <CardContent>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography variant="caption" color="text.secondary">
+                          {item.source || 'Financial News'} • {formatDate(item.published_at || new Date())}
+                        </Typography>
+                        
+                        {hasSentiment && (
+                          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <TrendIcon sx={{ fontSize: 16, mr: 0.5, color: sentimentColor }} />
+                            <Typography variant="caption" sx={{ color: sentimentColor, fontWeight: 'bold' }}>
+                              {isPositive ? 'Bullish' : 'Bearish'}
+                            </Typography>
+                          </Box>
+                        )}
+                      </Box>
+                      
+                      <Typography variant="body1" sx={{ fontWeight: 600, mb: 1 }}>
+                        {item.title}
                       </Typography>
                       
-                      {hasSentiment && (
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                          <TrendIcon sx={{ fontSize: 16, mr: 0.5, color: sentimentColor }} />
-                          <Typography variant="caption" sx={{ color: sentimentColor, fontWeight: 'bold' }}>
-                            {isPositive ? 'Bullish' : 'Bearish'}
-                          </Typography>
+                      {item.symbols && item.symbols.length > 0 && (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 1 }}>
+                          {item.symbols.map((symbol, i) => (
+                            <Chip 
+                              key={i} 
+                              label={symbol} 
+                              size="small" 
+                              variant="outlined"
+                              sx={{ fontSize: '0.7rem' }}
+                            />
+                          ))}
                         </Box>
                       )}
-                    </Box>
-                    
-                    <Typography variant="body1" sx={{ fontWeight: 600, mb: 1 }}>
-                      {item.title}
-                    </Typography>
-                    
-                    {item.symbols && item.symbols.length > 0 && (
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 1 }}>
-                        {item.symbols.map((symbol, i) => (
-                          <Chip 
-                            key={i} 
-                            label={symbol} 
-                            size="small" 
-                            variant="outlined"
-                            sx={{ fontSize: '0.7rem' }}
-                          />
-                        ))}
-                      </Box>
-                    )}
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </Paper>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Paper>
+
+      {/* News Detail Modal */}
+      <NewsDetailModal
+        open={modalOpen}
+        onClose={handleCloseModal}
+        newsItem={selectedNews}
+      />
+    </>
   );
 }
 
