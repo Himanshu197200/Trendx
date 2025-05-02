@@ -151,7 +151,7 @@ function AboutContact() {
             </Typography>
             
             <Typography variant="body1" paragraph>
-              Founded in 2023, TrendX has quickly become the go-to platform for traders and investors looking to make informed decisions based on comprehensive market data, intuitive charts, and real-time stock information.
+              Founded in 2025, TrendX has quickly become the go-to platform for traders and investors looking to make informed decisions based on comprehensive market data, intuitive charts, and real-time stock information.
             </Typography>
             
             <Divider sx={{ my: 3 }} />
@@ -275,7 +275,7 @@ function AboutContact() {
               
               <Grid item xs={12}>
                 <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-                  <Link href="https://twitter.com/Himanshu197200" target="_blank" rel="noopener">
+                  <Link href="https://x.com/i/flow/login?lang=en" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
@@ -287,7 +287,7 @@ function AboutContact() {
                     </Avatar>
                   </Link>
                   
-                  <Link href="https://linkedin.com/in/himanshu-mishra-a5a8aa22a" target="_blank" rel="noopener">
+                  <Link href="https://www.linkedin.com/in/himanshu-mishra-153697306/" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
@@ -299,7 +299,7 @@ function AboutContact() {
                     </Avatar>
                   </Link>
                   
-                  <Link href="https://facebook.com/profile.php?id=100009246070694" target="_blank" rel="noopener">
+                  <Link href="https://www.facebook.com" target="_blank" rel="noopener">
                     <Avatar
                       sx={{
                         bgcolor: 'primary.main',
